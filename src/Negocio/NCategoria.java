@@ -23,7 +23,7 @@ public class NCategoria {
         if (esNumero(id)) {
             ArrayList<Categoria> lista = dcategoria.listar(Integer.valueOf(id));
             if (!lista.isEmpty()) {
-                String res = "<h2> Lista de Rol </h2>\n"
+                String res = "<h2> Lista de Categoria </h2>\n"
                         + "<table>\n"
                         + "<tr>"
                         + "<td>ID</td>"

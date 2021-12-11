@@ -39,7 +39,7 @@ public class DProducto {
     }
     
     public boolean crear(String nombre, int cantidad, int codigo, int almacen_id, int categoria_id){
-        String query = "insert into productos (nombre,cantidad,codigo,alamacen_id,categoria_id,created_at,updated_at) values(?,?,?,?,?,now(),now())";
+        String query = "insert into productos (nombre,cantidad,codigo,almacen_id,categoria_id,created_at,updated_at) values(?,?,?,?,?,now(),now())";
         try {
             PreparedStatement pre = con.conectar().prepareStatement(query);
             pre.setString(1, nombre);
@@ -70,6 +70,7 @@ public class DProducto {
             pre.setInt(3, codigo);
             pre.setInt(4,almacen_id);
             pre.setInt(5, categoria_id);
+            pre.setInt(6,id);
             pre.execute();
             pre.close();
             return true;

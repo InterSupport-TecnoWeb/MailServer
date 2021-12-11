@@ -58,7 +58,7 @@ public class NPlan {
 
     public String editar(String[] parametros) {
         String mensaje = "Error de parametros tiene : " + parametros.length + " deberia ser solo 5";
-        if (parametros.length == 4 && esNumero(parametros[0]) && esNumero(parametros[5])) {
+        if (parametros.length == 5 && esNumero(parametros[0]) && esNumero(parametros[4])) {
             if (dplan.editar(Integer.valueOf(parametros[0]),parametros[1], parametros[2],Integer.valueOf(parametros[3]),Integer.valueOf(parametros[4]))) {
                 return successMessage("Plan editado exitosamente!!");
             }

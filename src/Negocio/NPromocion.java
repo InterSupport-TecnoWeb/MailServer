@@ -24,7 +24,7 @@ public class NPromocion {
         if (esNumero(id)) {
             ArrayList<Promocion> lista = dpromocion.listar(Integer.valueOf(id));
             if (!lista.isEmpty()) {
-                String res = "<h2> Lista de Rol </h2>\n"
+                String res = "<h2> Lista de Promocion </h2>\n"
                         + "<table>\n"
                         + "<tr>"
                         + "<td>ID</td>"

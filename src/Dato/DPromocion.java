@@ -23,7 +23,7 @@ public class DPromocion {
     public ArrayList<Promocion> listar(int id){
         ArrayList<Promocion> lista = new ArrayList<>();
         try {
-            String query = (id == 0) ?"SELECT id, nombre, descuento, inicio, fin FROM promocions ;" : "SELECT id, nombre, descuento, inicion, fin FROM promocions WHERE promocions.id="+id;
+            String query = (id == 0) ?"SELECT id, nombre, descuento, inicio, fin FROM promocions ;" : "SELECT id, nombre, descuento, inicio, fin FROM promocions WHERE promocions.id="+id;
             PreparedStatement pre = con.conectar().prepareStatement(query);
             ResultSet result = pre.executeQuery();
             while(result.next()){
@@ -59,7 +59,9 @@ public class DPromocion {
     }
     
     public boolean editar(int id, String nombre, int descuento, Date inicio, Date fin){
-        String query = "update promocions set nombre = ?, descuento = ?, inicio=?, fin=? where id = ? ";
+        String query = "UPDATE promocions\n" +
+"	SET nombre=?, descuento=?, inicio=?, fin=?, updated_at=now()\n" +
+"	WHERE id=?; ";
         try {
             if (listar(id).isEmpty()){
                 return false;
@@ -69,7 +71,7 @@ public class DPromocion {
             pre.setInt(2, descuento);
             pre.setDate(3, inicio);
             pre.setDate(4, fin);
-            pre.setInt(3, id);
+            pre.setInt(5, id);
             pre.execute();
             pre.close();
             return true;
