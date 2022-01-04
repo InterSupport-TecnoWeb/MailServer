@@ -26,14 +26,14 @@ public class NServicio {
             ArrayList<Servicio> lista = dservicio.listar(Integer.valueOf(id));
             if(!lista.isEmpty()){
                 String res = "<h2> Lista de Servicios </h2>\n"
-                        + "<table>\n"
+                        + "<table border=1>\n"
                         + "<tr>"
-                        + "<td>ID</td>"
-                        + "<td>Direccion</td>"
-                        + "<td>Codigo</td>"
-                        + "<td>Tipo</td>"
-                        + "<td>Estado</td>"
-                        + "<td>Plan</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">ID</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Direccion</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Codigo</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Tipo</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Estado</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Plan</td>"
                         + "</tr>\n";
                 for (Servicio servicio : lista) {
                     res += servicio.toString();

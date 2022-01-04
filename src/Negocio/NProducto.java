@@ -24,14 +24,14 @@ public class NProducto {
             ArrayList<Producto> lista = dproducto.listar(Integer.valueOf(id));
             if (!lista.isEmpty()) {
                 String res = "<h2> Lista de Producto </h2>\n"
-                        + "<table>\n"
+                        + "<table border=1>\n"
                         + "<tr>"
-                        + "<td>ID</td>"
-                        + "<td>Nombre</td>"
-                        + "<td>Cantidad</td>"
-                        + "<td>Codigo</td>"
-                        + "<td>Almacen_id</td>"
-                        + "<td>Categoria_id</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">ID</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Nombre</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Cantidad</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Codigo</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Almacen_id</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Categoria_id</td>"
                         + "</tr>\n";
                 for (Producto producto : lista) {
                     res += producto.toString();

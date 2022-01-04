@@ -46,7 +46,6 @@ public class Usuario {
                 + "<td>" + this.apellido + "</td>"
                 + "<td>" + this.ci + "</td>"
                 + "<td>" + this.correo + "</td>"
-                + "<td>" + this.password + "</td>"
                 + "<td>" + this.rol_id + "</td>"
                 + "<td>" + this.rol_nombre + "</td>"
                 + "</tr>\n";
