@@ -13,6 +13,7 @@ import Negocio.NDetalleProducto;
 import Negocio.NProducto;
 import Negocio.NPromocion;
 import Negocio.NPlan;
+import Negocio.NReporte;
 import Negocio.NServicio;
 import java.util.ArrayList;
 import java.util.List;
@@ -136,7 +137,9 @@ public class Manejador {
             "USERS",
             "TEUSERS",
             "TECLIENTE",
-            "ASIGNACIONSERVICIO"
+            "ASIGNACIONSERVICIO",
+            "REPORTE1",
+            "REPORTE2"
         };
         String[] opciones = {
             "LIST",
@@ -671,6 +674,24 @@ public class Manejador {
                     NAsignacionServicio delasigserv = new NAsignacionServicio();
                     arreglo = parametros.split(",");
                     resp = delasigserv.eliminar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+                
+                /*------------------------------------ REPORTES -------------------------------------------*/
+            case "LISTREPORTE1":
+                if(!parametros.contains(",")){
+                    NReporte reporte1 = new NReporte();
+                    resp = reporte1.reporteServicioPlan();
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "LISTREPORTE2":
+                if(!parametros.contains(",")){
+                    NReporte reporte2 = new NReporte();
+                    resp = reporte2.resporteSignacionTecnico();
                     System.out.println(resp);
                     enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
                 }
