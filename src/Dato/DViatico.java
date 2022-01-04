@@ -39,7 +39,7 @@ public class DViatico {
     }
     
     public boolean crear(int monto, String fecha, String razon, int user_id){
-        String query = "insert into users (monto,fecha,razon,user_id,created_at,updated_at) values(?,'"+fecha+"',?,?,now(),now())";
+        String query = "insert into viaticos (monto,fecha,razon,user_id,created_at,updated_at) values(?,'"+fecha+"',?,?,now(),now())";
         try {
             DUsuario usuario = new DUsuario();
             if (usuario.listar(user_id).isEmpty()){
@@ -71,6 +71,7 @@ public class DViatico {
             pre.setInt(1, monto);
             pre.setString(2, razon);
             pre.setInt(3, user_id);
+            pre.setInt(4, id);
             pre.executeUpdate();
             pre.close();
             return true;

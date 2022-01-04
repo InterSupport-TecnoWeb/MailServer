@@ -15,6 +15,7 @@ import Negocio.NPromocion;
 import Negocio.NPlan;
 import Negocio.NReporte;
 import Negocio.NServicio;
+import Negocio.NViatico;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -696,6 +697,41 @@ public class Manejador {
                     enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
                 }
                 break;
+/*---------------GESTIONAR VIATICOS--------------*/
+            case "LISTVIATICO":
+                if (!parametros.contains(",")) {
+                    NViatico listviatico = new NViatico();
+                    resp = listviatico.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "REGVIATICO":
+                if (parametros.contains(",")) {
+                    NViatico regviatico = new NViatico();
+                    arreglo = parametros.split(",");
+                    resp = regviatico.crear(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDIVIATICO":
+                if (parametros.contains(",")) {
+                    NViatico editviatico = new NViatico();
+                    arreglo = parametros.split(",");
+                    resp = editviatico.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELVIATICO":
+                if (!parametros.contains(",")) {
+                    NViatico delviatico = new NViatico();
+                    resp = delviatico.eliminar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;    
         }}
                 
     private void permisosTecnico(String comando, String parametros, int rol, String prt_mailFrom, String personal) {
