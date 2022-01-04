@@ -26,10 +26,10 @@ public class NDetalleProducto {
             ArrayList<detalleproducto> lista = ddetalleproducto.listar(Integer.valueOf(id));
             if(!lista.isEmpty()){
                 String res = "<h2> Lista de detalle actividad producto </h2>\n"
-                        + "<table>\n"
+                        + "<table border=1>\n"
                         + "<tr>"
-                        + "<td>ID actividad</td>"
-                        + "<td>Nombre producto</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">ID actividad</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Nombre producto</td>"
                         + "</tr>\n";
                 for (detalleproducto object : lista) {
                     res += object.toString();

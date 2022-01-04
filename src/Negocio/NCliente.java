@@ -22,13 +22,13 @@ public class NCliente {
             ArrayList<Cliente> lista = dcliente.listar(Integer.valueOf(id));
             if (!lista.isEmpty()) {
                 String res = "<h2> Lista de Cliente </h2>\n"
-                        + "<table>\n"
+                        + "<table border=1>\n"
                         + "<tr>"
-                        + "<td>ID</td>"
-                        + "<td>Nombre</td>"
-                        + "<td>Apellido</td>"
-                        + "<td>CI</td>"
-                        + "<td>correo</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">ID</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Nombre</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Apellido</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">CI</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">correo</td>"
                         + "</tr>\n";
                 for (Cliente cliente : lista) {
                     res += cliente.toString();

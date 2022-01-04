@@ -25,13 +25,13 @@ public class NPromocion {
             ArrayList<Promocion> lista = dpromocion.listar(Integer.valueOf(id));
             if (!lista.isEmpty()) {
                 String res = "<h2> Lista de Promocion </h2>\n"
-                        + "<table>\n"
+                        + "<table border=1>\n"
                         + "<tr>"
-                        + "<td>ID</td>"
-                        + "<td>Nombre</td>"
-                        + "<td>Descuento</td>"
-                        + "<td>Inicio</td>"
-                        + "<td>Fin</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">ID</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Nombre</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Descuento</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Inicio</td>"
+                        + "<td align=\"center\"valign=\"top\"  bgcolor=\"#178ffa\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;\">Fin</td>"
                         + "</tr>\n";
                 for (Promocion promocion : lista) {
                     res += promocion.toString();
