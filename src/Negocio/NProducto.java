@@ -46,8 +46,8 @@ public class NProducto {
     }
 
     public String crear(String[] parametros) {
-        String mensaje = "Error de parametros tien : " + parametros.length + " deberia ser solo 6";
-        if (parametros.length == 6 && esNumero(parametros[5])) {
+        String mensaje = "Error de parametros tiene : " + parametros.length + " deberia ser solo 5";
+        if (parametros.length == 5 && esNumero(parametros[4])&& esNumero(parametros[3])) {
             if (dproducto.crear(parametros[0], Integer.valueOf(parametros[1]),Integer.valueOf(parametros[2]),Integer.valueOf(parametros[3]),Integer.valueOf(parametros[4]))) {
                 return successMessage("Producto Registrado exitosamente!!");
             }
@@ -58,7 +58,7 @@ public class NProducto {
 
     public String editar(String[] parametros) {
         String mensaje = "Error de parametros tiene : " + parametros.length + " deberia ser solo 6";
-        if (parametros.length == 6 && esNumero(parametros[0]) && esNumero(parametros[5])) {
+        if (parametros.length == 6 && esNumero(parametros[0]) && esNumero(parametros[5])&& esNumero(parametros[4])) {
             if (dproducto.editar(Integer.valueOf(parametros[0]),parametros[1], Integer.valueOf(parametros[2]),Integer.valueOf(parametros[3]),Integer.valueOf(parametros[4]),Integer.valueOf(parametros[5]))) {
                 return successMessage("Producto editado exitosamente!!");
             }

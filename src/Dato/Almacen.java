@@ -11,10 +11,9 @@ package Dato;
  */
 public class Almacen {
  private int id;
-    private int cantidad;
     private String direccion;
 
-    public Almacen(int id, String dirreccion) {
+    public Almacen(int id, String direccion) {
         this.id = id;
         this.direccion= direccion;
     }

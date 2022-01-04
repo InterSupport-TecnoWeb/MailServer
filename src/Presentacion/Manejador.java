@@ -1,10 +1,19 @@
 package Presentacion;
 
 import Dato.Usuario;
+import Negocio.NActividad;
 import Negocio.NCliente;
 import Negocio.NRol;
 import Negocio.NTelefono;
 import Negocio.NUsuario;
+import Negocio.NAlmacen;
+import Negocio.NAsignacionServicio;
+import Negocio.NCategoria;
+import Negocio.NDetalleProducto;
+import Negocio.NProducto;
+import Negocio.NPromocion;
+import Negocio.NPlan;
+import Negocio.NServicio;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,7 +135,8 @@ public class Manejador {
             "ROL",
             "USERS",
             "TEUSERS",
-            "TECLIENTE"
+            "TECLIENTE",
+            "ASIGNACIONSERVICIO"
         };
         String[] opciones = {
             "LIST",
@@ -348,10 +358,325 @@ public class Manejador {
                     System.out.println(resp);
                     enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
                 }
+                break; 
+//-------------------ALMACEN-----------------------------------
+                case "LISTALMACEN":
+                if (!parametros.contains(",")) {
+                    NAlmacen listalmacen = new NAlmacen();
+                    resp = listalmacen.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
                 break;
-        }
-    }
-
+            case "REGALMACEN":
+                if (!parametros.contains(",")) {
+                    NAlmacen regalmacen = new NAlmacen();
+                    arreglo = parametros.split(",");
+                    resp = regalmacen.crear(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDIALMACEN":
+                if (parametros.contains(",")) {
+                    NAlmacen edialmacen = new NAlmacen();
+                    arreglo = parametros.split(",");
+                    resp = edialmacen.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELALMACEN":
+                if (!parametros.contains(",")) {
+                    NAlmacen delalmacen = new NAlmacen();
+                    resp = delalmacen.eliminar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+//--------------------CATEGORIA-----------------------------------------
+      case "LISTCATEGORIA":
+                if (!parametros.contains(",")) {
+                    NCategoria listcategoria = new NCategoria();
+                    resp = listcategoria.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "REGCATEGORIA":
+                if (parametros.contains(",")) {
+                    NCategoria regcategoria = new NCategoria();
+                    arreglo = parametros.split(",");
+                    resp = regcategoria.crear(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDICATEGORIA":
+                if (parametros.contains(",")) {
+                    NCategoria edicategoria = new NCategoria();
+                    arreglo = parametros.split(",");
+                    resp = edicategoria.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELCATEGORIA":
+                if (!parametros.contains(",")) {
+                    NCategoria delcategoria = new NCategoria();
+                    resp = delcategoria.eliminar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+//---------------------PRODUCTO--------------------------------------
+                case "LISTPRODUCTO":
+                if (!parametros.contains(",")) {
+                    NProducto listproducto = new NProducto();
+                    resp = listproducto.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "REGPRODUCTO":
+                if (parametros.contains(",")) {
+                    NProducto regproducto = new NProducto();
+                    arreglo = parametros.split(",");
+                    resp = regproducto.crear(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDIPRODUCTO":
+                if (parametros.contains(",")) {
+                    NProducto ediproducto = new NProducto();
+                    arreglo = parametros.split(",");
+                    resp = ediproducto.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELPRODUCTO":
+                if (!parametros.contains(",")) {
+                    NProducto delproducto = new NProducto();
+                    resp = delproducto.eliminar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+//-----------------------PROMOCION---------------------------------------
+            case "LISTPROMOCION":
+                if (!parametros.contains(",")) {
+                    NPromocion listpromocion = new NPromocion();
+                    resp = listpromocion.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "REGPROMOCION":
+                if (parametros.contains(",")) {
+                    NPromocion regpromocion = new NPromocion();
+                    arreglo = parametros.split(",");
+                    resp = regpromocion.crear(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDIPROMOCION":
+                if (parametros.contains(",")) {
+                    NPromocion edipromocion = new NPromocion();
+                    arreglo = parametros.split(",");
+                    resp = edipromocion.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELPROMOCION":
+                if (!parametros.contains(",")) {
+                    NPromocion delpromocion = new NPromocion();
+                    resp = delpromocion.eliminar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+//-------------------------PLAN-------------------------
+            case "LISTPLAN":
+                if (!parametros.contains(",")) {
+                    NPlan listplan = new NPlan();
+                    resp = listplan.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "REGPLAN":
+                if (parametros.contains(",")) {
+                    NPlan regplan = new NPlan();
+                    arreglo = parametros.split(",");
+                    resp = regplan.crear(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDIPLAN":
+                if (parametros.contains(",")) {
+                    NPlan ediplan = new NPlan();
+                    arreglo = parametros.split(",");
+                    resp = ediplan.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELPLAN":
+                if (!parametros.contains(",")) {
+                    NPlan delplan = new NPlan();
+                    resp = delplan.eliminar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+/*---------------------------------- ACTIVIDAD ------------------------------------------------------------------------------------*/
+            case "LISTACTIVIDADES":
+                if (!parametros.contains(",")) {
+                    NActividad listactividad = new NActividad();
+                    resp = listactividad.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "REGACTIVIDADES":
+                if (parametros.contains(",")) {
+                    NActividad regactividad = new NActividad();
+                    arreglo = parametros.split(",");
+                    resp = regactividad.crear(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDIACTIVIDADES":
+                if (parametros.contains(",")) {
+                    NActividad editactividad = new NActividad();
+                    arreglo = parametros.split(",");
+                    resp = editactividad.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELACTIVIDADES":
+                if (!parametros.contains(",")) {
+                    NActividad deltactividad = new NActividad();
+                    resp = deltactividad.eliminar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+                
+/* ----------------------------------DETALLES DE ACTIVIDAD PRODUCTO--------------------------------------------------------------------*/
+            case "LISTDETALLEPRODUCTO":
+                if (!parametros.contains(",")) {
+                    NDetalleProducto listdetalle = new NDetalleProducto();
+                    resp = listdetalle.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "REGDETALLEPRODUCTO":
+                if (!parametros.contains(",")) {
+                    NDetalleProducto regdetalleprod = new NDetalleProducto();
+                    resp = regdetalleprod.agregaractual(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDIDETALLEPRODUCTO":
+                if (parametros.contains(",")) {
+                    NDetalleProducto editdetalle = new NDetalleProducto();
+                    arreglo = parametros.split(",");
+                    resp = editdetalle.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELDETALLEPRODUCTO":
+                if (parametros.contains(",")) {
+                    NDetalleProducto deldetalleprod = new NDetalleProducto();
+                    arreglo = parametros.split(",");
+                    resp = deldetalleprod.eliminar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+/*------------------------------------------ SERVICIOS ----------------------------------------------------------------------*/
+            case "LISTSERVICIO":
+                if (!parametros.contains(",")) {
+                    NServicio listservicio = new NServicio();
+                    resp = listservicio.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "REGSERVICIO":
+                if (parametros.contains(",")) {
+                    NServicio regservicio = new NServicio();
+                    arreglo = parametros.split(",");
+                    resp = regservicio.crear(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDISERVICIO":
+                if (parametros.contains(",")) {
+                    NServicio editservicio = new NServicio();
+                    arreglo = parametros.split(",");
+                    resp = editservicio.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELSERVICIO":
+                if (!parametros.contains(",")) {
+                    NServicio delservicio = new NServicio();
+                    resp = delservicio.eliminar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+/*-------------------------------------------------------- DETALLE ASIGNACION USUARIO -------------------------------------------*/
+            case "LISTASIGNACIONSERVICIO":
+                if (!parametros.contains(",")) {
+                    NAsignacionServicio listasigserv = new NAsignacionServicio();
+                    resp = listasigserv.listar(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "REGASIGNACIONSERVICIO":
+                if (!parametros.contains(",")) {
+                    NAsignacionServicio regasigserv = new NAsignacionServicio();
+                    resp = regasigserv.agregaractual(parametros);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "EDIASIGNACIONSERVICIO":
+                if (parametros.contains(",")) {
+                    NAsignacionServicio editasigserv = new NAsignacionServicio();
+                    arreglo = parametros.split(",");
+                    resp = editasigserv.editar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+            case "DELASIGNACIONSERVICIO":
+                if (parametros.contains(",")) {
+                    NAsignacionServicio delasigserv = new NAsignacionServicio();
+                    arreglo = parametros.split(",");
+                    resp = delasigserv.eliminar(arreglo);
+                    System.out.println(resp);
+                    enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
+                }
+                break;
+        }}
+                
     private void permisosTecnico(String comando, String parametros, int rol, String prt_mailFrom, String personal) {
 
     }
