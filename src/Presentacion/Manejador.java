@@ -102,7 +102,7 @@ public class Manejador {
                     subject = subject.substring(1);
                     System.out.println(subject);
                     this.comando = subject.split("\\[")[0];
-                    if (comando == "HELP") {
+                    if ("HELP".equals(comando)) {
                         return true;
                     }
                     if (validarComando(comando)) {
@@ -135,7 +135,7 @@ public class Manejador {
             "VIATICO",
             "DETALLEPRODUCTO",
             "ROL",
-            "USERS",
+            "USUARIO",
             "TEUSERS",
             "TECLIENTE",
             "ASIGNACIONSERVICIO",
@@ -612,7 +612,7 @@ public class Manejador {
                 }
                 break;
 //---------- USERS --------------------------------------------------------
-            case "LISTUSERS":
+            case "LISTUSUARIO":
                 if (!parametros.contains(",")) {
                     NUsuario listusuario = new NUsuario();
                     resp = listusuario.listar(parametros);
@@ -620,7 +620,7 @@ public class Manejador {
                     enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
                 }
                 break;
-            case "REGUSERS":
+            case "REGUSUARIO":
                 if (parametros.contains(",")) {
                     NUsuario regusuario = new NUsuario();
                     arreglo = parametros.split(",");
@@ -629,7 +629,7 @@ public class Manejador {
                     enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
                 }
                 break;
-            case "EDIUSERS":
+            case "EDIUSUARIO":
                 if (parametros.contains(",")) {
                     NUsuario ediusuario = new NUsuario();
                     arreglo = parametros.split(",");
@@ -638,7 +638,7 @@ public class Manejador {
                     enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
                 }
                 break;
-            case "DELUSERS":
+            case "DELUSUARIO":
                 if (!parametros.contains(",")) {
                     NUsuario delusuario = new NUsuario();
                     resp = delusuario.eliminar(parametros);
@@ -1122,6 +1122,9 @@ public class Manejador {
                     enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(resp, personal));
                 }
                 break;
+            case "HELP":
+                enviarMensajeCorreoOrigen(prt_mailFrom, comando + " + " + parametros, getMensajeRespuesta(getMensajeAyuda(), personal));
+                break;
         }
     }
 
@@ -1236,6 +1239,179 @@ public class Manejador {
                 }
                 break;
         }
+    }
+    
+    public String getMensajeAyuda(){
+        String cad = "";
+        cad += "<body>\n" +
+"    <h1>Formato de ayuda:</h1>\n" +
+"    <h3>HELP[]</h3>\n" +
+"    <h3>LISTCLIENTE[ID]</h3>\n" +
+"    <h3>REGCLIENTE[ID,NOMBRE,APELLIDO,CI,CORREO]</h3>\n" +
+"    <h3>EDITCLIENTE[ID,NOMBRE,APELLIDO,CI,CORREO]</h3>\n" +
+"    <h3>DELCLIENTE[ID]</h3>\n" +
+"    <h1>ROLES:</h1>\n" +
+"    <h2>Administrador</h2>\n" +
+"    <ul>\n" +
+"        <li>LISTUSUARIO[ID]</li>\n" +
+"        <li>REGUSUARIO[ID,NOMBRE,APELLIDO,CI,CORREO,PASSWORD,ROL_ID]</li>\n" +
+"        <li>EDITUSUARIO[ID,NOMBRE,APELLIDO,CI,CORREO,PASSWORD,ROL_ID]</li>\n" +
+"        <li>DELUSUARIO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTCLIENTE[ID]</li>\n" +
+"        <li>REGCLIENTE[ID,NOMBRE,APELLIDO,CI,CORREO]</li>\n" +
+"        <li>EDITCLIENTE[ID,NOMBRE,APELLIDO,CI,CORREO]</li>\n" +
+"        <li>DELCLIENTE[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTTELEFONO[ID]</li>\n" +
+"        <li>REGTELEFONO[ID,NUMERO,CLIENTE_ID,USER_ID]</li>\n" +
+"        <li>EDITTELEFONO[ID,NUMERO,CLIENTE_ID,USER_ID]</li>\n" +
+"        <li>DELTELEFONO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTPLAN[ID]</li>\n" +
+"        <li>REGPLAN[[ID,NOMBRE,DESCRIPCION,TARIFA,PROMOCION_ID]</li>\n" +
+"        <li>EDITPLAN[[ID,NOMBRE,DESCRIPCION,TARIFA,PROMOCION_ID]</li>\n" +
+"        <li>DELPLAN[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTALMACEN[ID]</li>\n" +
+"        <li>REGALMACEN[ID,DIRRECION]</li>\n" +
+"        <li>EDITALMACEN[ID,DIRRECION]</li>\n" +
+"        <li>DELALMACEN[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTCATEGORIA[ID]</li>\n" +
+"        <li>REGCATEGORIA[ID,NOMBRE,DESCRIPCION]</li>\n" +
+"        <li>EDITCATEGORIA[ID,NOMBRE,DESCRIPCION]</li>\n" +
+"        <li>DELCATEGORIA[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTPRODUCTO[ID]</li>\n" +
+"        <li>REGPRODUCTO[ID,NOMBRE,CANTIDAD,CODIGO,ALMACEN_ID,CATEGORIA_ID]</li>\n" +
+"        <li>EDITPRODUCTO[ID,NOMBRE,CANTIDAD,CODIGO,ALMACEN_ID,CATEGORIA_ID]</li>\n" +
+"        <li>DELPRODUCTO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTSERVICIO[ID]</li>\n" +
+"        <li>REGSERVICIO[ID,DIRECCION,CODIGO,TIPO,ESTADO,PLAN_ID]</li>\n" +
+"        <li>EDITSERVICIO[ID,DIRECCION,CODIGO,TIPO,ESTADO,PLAN_ID]</li>\n" +
+"        <li>DELSERVICIO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTPROMOCION[ID]</li>\n" +
+"        <li>REGUPROMOCION[ID,NOMBRE,DESCUENTO,INICIO,FIN]</li>\n" +
+"        <li>EDITPROMOCION[ID,NOMBRE,DESCUENTO,INICIO,FIN]</li>\n" +
+"        <li>DELPROMOCION[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTACTIVIDAD[ID]</li>\n" +
+"        <li>REGACTIVIDAD[ID,INICIO,FIN,FOTO,ESTADO,SERVICIO_ID]</li>\n" +
+"        <li>EDITACTIVIDAD[ID,INICIO,FIN,FOTO,ESTADO,SERVICIO_ID]</li>\n" +
+"        <li>DELACTIVIDAD[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTVIATICO[ID]</li>\n" +
+"        <li>REGVIATICO[ID,MONTO,FECHA,RAZON,USER_ID]</li>\n" +
+"        <li>EDITVIATICO[ID,MONTO,FECHA,RAZON,USER_ID]</li>\n" +
+"        <li>DELVIATICO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTINVENTARIO[ID]</li>\n" +
+"        <li>REGINVENTARIO[ACTIVIDAD_ID,PRODUCTO_ID]</li>\n" +
+"        <li>EDITINVENTARIO[ACTIVIDAD_ID,PRODUCTO_ID]</li>\n" +
+"        <li>DELINVENTARIO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>REPORTE[]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>ESTADISTICA[]</li>\n" +
+"    </ul>\n" +
+"    <h2>Secretaria</h2>\n" +
+"    <ul>\n" +
+"        <li>LISTCLIENTE[ID]</li>\n" +
+"        <li>REGCLIENTE[ID,NOMBRE,APELLIDO,CI,CORREO]</li>\n" +
+"        <li>EDITCLIENTE[ID,NOMBRE,APELLIDO,CI,CORREO]</li>\n" +
+"        <li>DELCLIENTE[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTTELEFONO[ID]</li>\n" +
+"        <li>REGTELEFONO[ID,NUMERO,CLIENTE_ID,USER_ID]</li>\n" +
+"        <li>EDITTELEFONO[ID,NUMERO,CLIENTE_ID,USER_ID]</li>\n" +
+"        <li>DELTELEFONO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTPLAN[ID]</li>\n" +
+"        <li>REGPLAN[ID,NOMBRE,DESCRIPCION,TARIFA,PROMOCION_ID]</li>\n" +
+"        <li>EDITPLAN[ID,NOMBRE,DESCRIPCION,TARIFA,PROMOCION_ID]</li>\n" +
+"        <li>DELPLAN[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTALMACEN[ID]</li>\n" +
+"        <li>REGALMACEN[ID,DIRRECION]</li>\n" +
+"        <li>EDITALMACEN[ID,DIRRECION]</li>\n" +
+"        <li>DELALMACEN[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTCATEGORIA[ID]</li>\n" +
+"        <li>REGCATEGORIA[ID,NOMBRE,DESCRIPCION]</li>\n" +
+"        <li>EDITCATEGORIA[ID,NOMBRE,DESCRIPCION]</li>\n" +
+"        <li>DELCATEGORIA[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTPRODUCTO[ID]</li>\n" +
+"        <li>REGPRODUCTO[ID,NOMBRE,CANTIDAD,CODIGO,ALMACEN_ID,CATEGORIA_ID]</li>\n" +
+"        <li>EDITPRODUCTO[ID,NOMBRE,CANTIDAD,CODIGO,ALMACEN_ID,CATEGORIA_ID]</li>\n" +
+"        <li>DELPRODUCTO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTSERVICIO[ID]</li>\n" +
+"        <li>REGSERVICIO[ID,DIRECCION,CODIGO,TIPO,ESTADO,PLAN_ID]</li>\n" +
+"        <li>EDITSERVICIO[ID,DIRECCION,CODIGO,TIPO,ESTADO,PLAN_ID]</li>\n" +
+"        <li>DELSERVICIO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTPROMOCION[ID]</li>\n" +
+"        <li>REGUPROMOCION[ID,NOMBRE,DESCUENTO,INICIO,FIN]</li>\n" +
+"        <li>EDITPROMOCION[ID,NOMBRE,DESCUENTO,INICIO,FIN]</li>\n" +
+"        <li>DELPROMOCION[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTVIATICO[ID]</li>\n" +
+"        <li>REGVIATICO[ID,MONTO,FECHA,RAZON,USER_ID]</li>\n" +
+"        <li>EDITVIATICO[ID,MONTO,FECHA,RAZON,USER_ID]</li>\n" +
+"        <li>DELVIATICO[ID]</li>\n" +
+"    </ul>\n" +
+"    <h2>Tecnico</h2>\n" +
+"    <ul>\n" +
+"        <li>LISTACTIVIDAD[ID]</li>\n" +
+"        <li>REGACTIVIDAD[ID,INICIO,FIN,FOTO,ESTADO,SERVICIO_ID]</li>\n" +
+"        <li>EDITACTIVIDAD[ID,INICIO,FIN,FOTO,ESTADO,SERVICIO_ID]</li>\n" +
+"        <li>DELACTIVIDAD[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTVIATICO[ID]</li>\n" +
+"        <li>REGVIATICO[ID,MONTO,FECHA,RAZON,USER_ID]</li>\n" +
+"        <li>EDITVIATICO[ID,MONTO,FECHA,RAZON,USER_ID]</li>\n" +
+"        <li>DELVIATICO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTINVENTARIO[ID]</li>\n" +
+"        <li>REGINVENTARIO[ACTIVIDAD_ID,PRODUCTO_ID]</li>\n" +
+"        <li>EDITINVENTARIO[]</li>\n" +
+"        <li>DELINVENTARIO[ID]</li>\n" +
+"    </ul>\n" +
+"    <ul>\n" +
+"        <li>LISTPRODUCTO[ID]</li>\n" +
+"        <li>REGPRODUCTO[ID,NOMBRE,CANTIDAD,CODIGO]</li>\n" +
+"        <li>EDITPRODUCTO[ID,NOMBRE,CANTIDAD,CODIGO]</li>\n" +
+"        <li>DELPRODUCTO[ID]</li>\n" +
+"    </ul>\n" +
+"</body>";
+        return cad;
     }
 
     private String getMensajeRespuesta(String res, String personal) {
